@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Antidot\Event;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\EventDispatcher\ListenerProviderInterface;
 
 class EventDispatcher implements EventDispatcherInterface
 {
-    /** @var ListenerProvider */
     private $listenerProvider;
 
-    public function __construct(ListenerProvider $listenerProvider)
+    public function __construct(ListenerProviderInterface $listenerProvider)
     {
         $this->listenerProvider = $listenerProvider;
     }
@@ -23,11 +23,10 @@ class EventDispatcher implements EventDispatcherInterface
     public function dispatch(object $event): object
     {
         $listeners = $this->listenerProvider->getListenersForEvent($event);
-        foreach ($listeners as $callableListener) {
+        foreach ($listeners as $listener) {
             if ($event->isPropagationStopped()) {
                 return $event;
             }
-            $listener = $callableListener();
             $listener($event);
         }
 

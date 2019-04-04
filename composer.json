@@ -2,8 +2,7 @@
     "name": "antidot-fw/event-dispatcher",
     "description": "Antiddot Framework event dispatcher library",
     "keywords": [
-        "psr-14",
-        "psr-17"
+        "psr-14"
     ],
     "type": "library",
     "license": "BSD-2-Clause",
