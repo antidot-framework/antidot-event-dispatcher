@@ -34,7 +34,7 @@
         }
     },
     "scripts": {
-        "check": [
+        "check-all": [
             "@cs-check",
             "@test",
             "@inspect"
