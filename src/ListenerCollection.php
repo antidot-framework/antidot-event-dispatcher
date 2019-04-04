@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Antidot\Event;
 
-use InvalidArgumentException;
 use IteratorAggregate;
 use Psr\Container\ContainerInterface;
 
@@ -30,18 +29,16 @@ class ListenerCollection implements IteratorAggregate, ContainerInterface, Liste
         $this->listeners[$eventName] = [$listener];
     }
 
-    public function get($id): iterable
+    public function get($eventName): iterable
     {
-        if ($this->has($id)) {
-            return $this->listeners[$id];
+        if ($this->has($eventName)) {
+            yield from $this->listeners[$eventName];
         }
-
-        throw new InvalidArgumentException('Invalid Event identifier given.');
     }
 
-    public function has($id): bool
+    public function has($eventName): bool
     {
-        return array_key_exists($id, $this->listeners);
+        return array_key_exists($eventName, $this->listeners);
     }
 
     public function getIterator()
