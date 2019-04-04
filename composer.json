@@ -1,0 +1,55 @@
+{
+    "name": "antidot/event-dispatcher",
+    "description": "Anti.Framework event dispatcher library",
+    "keywords": [
+        "psr-14",
+        "psr-17"
+    ],
+    "type": "library",
+    "license": "BSD-2.0",
+    "authors": [
+        {
+            "name": "kpicaza",
+            "email": "kpicaza.sound@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2.13",
+        "psr/event-dispatcher": "^1.0"
+    },
+    "require-dev": {
+        "phpro/grumphp": "^0.15.0",
+        "phpstan/phpstan": "^0.11.5",
+        "phpunit/phpunit": "^8.0",
+        "squizlabs/php_codesniffer": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Antidot\\Event\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AntidotTest\\Event\\": "test"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test",
+            "@inspect"
+        ],
+        "cs-check": "phpcs src --colors",
+        "cs-fix": "phpcbf src --colors",
+        "inspect": "phpstan analyse src -l7 --ansi",
+        "test": "phpunit --colors=always"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "zf": {
+            "config-provider": "Antidot\\Event\\Container\\Config\\ConfigProvider"
+        }
+    }
+}
