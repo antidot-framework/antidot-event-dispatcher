@@ -1,12 +1,12 @@
 {
-    "name": "antidot/event-dispatcher",
-    "description": "Anti.Framework event dispatcher library",
+    "name": "antidot-fw/event-dispatcher",
+    "description": "Antiddot Framework event dispatcher library",
     "keywords": [
         "psr-14",
         "psr-17"
     ],
     "type": "library",
-    "license": "BSD-2.0",
+    "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "kpicaza",
