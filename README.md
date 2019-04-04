@@ -9,9 +9,62 @@
 
 ## Installation
 
-Using [composer]()
+Using [composer](https://getcomposer.org/download/)
 
 ````
 composer require antidot-fw/event-dispatcher
 ````
 
+### Using [Zend Config Aggregator](https://framework.zend.com/blog/2017-04-20-config-aggregator.html)
+it install the library automatically
+
+![install](./docs/install.jpg)
+
+### Using factory:
+
+#### Config
+
+````php
+<?php
+/** @var \Psr\Container\ContainerInterface $container */
+$container->set('config', [
+    'app-events' => [
+        'event-listeners' => [
+//            SomeEvent::class => [
+            'some.event' => [
+                SomeEventListener::class,
+                SomeEventOtherListener::class,
+            ]
+        ]
+    ]
+]);
+````
+### Using factory
+
+````php
+<?php
+
+use Antidot\Event\Container\EventDispatcherFactory;
+use Psr\EventDispatcher\EventDispatcherInterface;
+
+$factory = new EventDispatcherFactory();
+
+$eventDispatcher = $factory->__invoke($container);
+$container->set(EventDispatcherInterface::class, $eventDispatcher);
+````
+
+## Usage
+
+### Send events
+
+````php
+<?php
+
+use Psr\EventDispatcher\EventDispatcherInterface;
+
+/** @var \Psr\Container\ContainerInterface $container */
+$eventDispatcher = $container->get(EventDispatcherInterface::class);
+
+$eventDispatcher->dispatch(SomeEvent::occur());
+
+````
