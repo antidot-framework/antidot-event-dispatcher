@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Antidot\Event;
 
 use IteratorAggregate;
-use Psr\Container\ContainerInterface;
 
 use function array_key_exists;
 

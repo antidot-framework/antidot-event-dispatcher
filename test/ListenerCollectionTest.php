@@ -7,13 +7,14 @@ namespace AntidotTest\Event;
 use Antidot\Event\EventInterface;
 use Antidot\Event\ListenerCollection;
 use Antidot\Event\ListenerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class ListenerCollectionTest extends TestCase
 {
-    /** @var EventInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var EventInterface|MockObject */
     private $event;
-    /** @var ListenerInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var ListenerInterface|MockObject */
     private $listener;
     /** @var ListenerCollection */
     private $collection;
