@@ -9,7 +9,7 @@ use Psr\Container\ContainerInterface;
 
 use function array_key_exists;
 
-class ListenerCollection implements IteratorAggregate, ContainerInterface, ListenerCollectorInterface
+class ListenerCollection implements IteratorAggregate, ListenerCollectorInterface, ListenerLocatorInterface
 {
     /** @var array<string, array<int, callable>> */
     private $listeners;
@@ -29,14 +29,14 @@ class ListenerCollection implements IteratorAggregate, ContainerInterface, Liste
         $this->listeners[$eventName] = [$listener];
     }
 
-    public function get($eventName): iterable
+    public function get(string $eventName): iterable
     {
         if ($this->has($eventName)) {
             yield from $this->listeners[$eventName];
         }
     }
 
-    public function has($eventName): bool
+    public function has(string $eventName): bool
     {
         return array_key_exists($eventName, $this->listeners);
     }
