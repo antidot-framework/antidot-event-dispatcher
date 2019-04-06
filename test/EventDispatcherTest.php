@@ -7,18 +7,19 @@ namespace AntidotTest\Event;
 use Antidot\Event\EventDispatcher;
 use Antidot\Event\EventInterface;
 use Antidot\Event\ListenerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
 
 class EventDispatcherTest extends TestCase
 {
-    /** @var EventInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var EventInterface|MockObject */
     private $event;
-    /** @var \PHPUnit\Framework\MockObject\MockObject */
+    /** @var ListenerProviderInterface|MockObject */
     private $listenerProvider;
-    /** @var ListenerInterface */
+    /** @var ListenerInterface|MockObject */
     private $listener1;
-    /** @var ListenerInterface */
+    /** @var ListenerInterface|MockObject */
     private $listener2;
 
     public function testItShouldDispatchEvents(): void
