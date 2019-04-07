@@ -4,6 +4,7 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/kpicaza/antidot-event-dispatcher/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kpicaza/antidot-event-dispatcher/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/kpicaza/antidot-event-dispatcher/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kpicaza/antidot-event-dispatcher/build-status/master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/kpicaza/antidot-event-dispatcher/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6568ab3621bae2850e6d/maintainability)](https://codeclimate.com/github/kpicaza/antidot-event-dispatcher/maintainability)
 
 [Psr 14 Event dispatcher](https://github.com/php-fig/event-dispatcher) implementation.
 
@@ -39,7 +40,7 @@ $container->set('config', [
     ]
 ]);
 ````
-### Using factory
+#### factory
 
 ````php
 <?php
