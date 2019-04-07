@@ -15,14 +15,14 @@ class ListenerCollectionTest extends TestCase
     /** @var EventInterface|MockObject */
     private $event;
     /** @var ListenerInterface|MockObject */
-    private $listener;
+    private $listeners;
     /** @var ListenerCollection */
     private $collection;
 
     public function testItShouldAddListenersLoCollection(): void
     {
         $this->givenAnEvent();
-        $this->givenAListener();
+        $this->givenSomeListeners();
         $this->havingACollectionWithoutAnyListeners();
         $this->whenListenerIsAddedToCollection();
         $this->thenCollectionShouldHaveAListenerSubscribedToEvent();
@@ -33,9 +33,12 @@ class ListenerCollectionTest extends TestCase
         $this->event = $this->createMock(EventInterface::class);
     }
 
-    private function givenAListener(): void
+    private function givenSomeListeners(): void
     {
-        $this->listener = $this->createMock(ListenerInterface::class);
+        $this->listeners = [
+            $this->createMock(ListenerInterface::class),
+            $this->createMock(ListenerInterface::class),
+        ];
     }
 
     private function havingACollectionWithoutAnyListeners(): void
@@ -46,7 +49,9 @@ class ListenerCollectionTest extends TestCase
 
     private function whenListenerIsAddedToCollection(): void
     {
-        $this->collection->addListener($this->event->name(), $this->listener);
+        foreach ($this->listeners as $listener) {
+            $this->collection->addListener($this->event->name(), $listener);
+        }
     }
 
     private function thenCollectionShouldHaveAListenerSubscribedToEvent(): void
