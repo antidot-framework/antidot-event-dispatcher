@@ -18,10 +18,12 @@ class ConfigProvider
                 ]
             ],
             'app-events' => [
-//                'event.name' => [
-//                    'Listener1',
-//                    'Listener2',
-//                    ...
+//                'event-listeners' => [
+//                    'event.name' => [
+//                        'Listener1',
+//                        'Listener2',
+//                        ...
+//                    ]
 //                ]
             ]
         ];
