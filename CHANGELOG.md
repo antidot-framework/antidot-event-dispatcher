@@ -1,5 +1,28 @@
 # Change Log
 
+## [Unreleased](https://github.com/kpicaza/antidot-event-dispatcher/tree/HEAD)
+
+[Full Changelog](https://github.com/kpicaza/antidot-event-dispatcher/compare/1.1.0...HEAD)
+
+**Implemented enhancements:**
+
+- Remove Requirement of Event name [\#3](https://github.com/kpicaza/antidot-event-dispatcher/issues/3)
+
+**Closed issues:**
+
+- Create docs site for Event dispatcher [\#4](https://github.com/kpicaza/antidot-event-dispatcher/issues/4)
+
+## [1.1.0](https://github.com/kpicaza/antidot-event-dispatcher/tree/1.1.0) (2019-04-10)
+[Full Changelog](https://github.com/kpicaza/antidot-event-dispatcher/compare/1.0.0...1.1.0)
+
+**Implemented enhancements:**
+
+- issue/\#3: remove requirement of event name [\#6](https://github.com/kpicaza/antidot-event-dispatcher/pull/6) ([kpicaza](https://github.com/kpicaza))
+
+**Merged pull requests:**
+
+- issue/\#4: Create docs for github pages [\#5](https://github.com/kpicaza/antidot-event-dispatcher/pull/5) ([kpicaza](https://github.com/kpicaza))
+
 ## [1.0.0](https://github.com/kpicaza/antidot-event-dispatcher/tree/1.0.0) (2019-04-08)
 **Fixed bugs:**
 

@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class EventTest extends TestCase
 {
-    private const NAME = 'some.event';
-    private $name;
     /** @var Event */
     private $eventClass;
     /** @var Event */
@@ -18,7 +16,6 @@ class EventTest extends TestCase
 
     public function testItShouldGetName(): void
     {
-        $this->givenAName();
         $this->havingAnEvent();
         $this->whenEventOccurred();
         $this->thenEventHaveACorrectName();
@@ -27,24 +24,17 @@ class EventTest extends TestCase
 
     public function testItShouldBeStoppedEvent(): void
     {
-        $this->givenAName();
         $this->havingAnEvent();
         $this->whenStoppedEventOccurred();
         $this->thenEventHasStoppedPropagation();
     }
 
-    private function givenAName(): void
-    {
-        $this->name = self::NAME;
-    }
-
     private function havingAnEvent(): void
     {
         $this->eventClass = new class extends Event {
-            public static function occur(string $name, bool $stopped = false): self
+            public static function occur(bool $stopped = false): self
             {
                 $self = new self;
-                $self->name = $name;
                 $self->stopped = $stopped;
 
                 return $self;
@@ -55,18 +45,18 @@ class EventTest extends TestCase
     private function whenEventOccurred(): void
     {
         $eventClass = $this->eventClass;
-        $this->event = $eventClass::occur(self::NAME);
+        $this->event = $eventClass::occur();
     }
 
     private function thenEventHaveACorrectName(): void
     {
-        $this->assertEquals(self::NAME, $this->event->name());
+        $this->assertFalse($this->event->isPropagationStopped());
     }
 
     private function whenStoppedEventOccurred(): void
     {
         $eventClass = $this->eventClass;
-        $this->event = $eventClass::occur(self::NAME, true);
+        $this->event = $eventClass::occur(true);
     }
 
     private function thenEventHasStoppedPropagation(): void

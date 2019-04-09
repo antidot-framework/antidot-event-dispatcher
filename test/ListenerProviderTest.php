@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace AntidotTest\Event;
 
-use Antidot\Event\EventInterface;
 use Antidot\Event\ListenerInterface;
 use Antidot\Event\ListenerProvider;
+use AntidotTest\Event\Container\TestEvent;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\EventDispatcher\StoppableEventInterface;
 
 class ListenerProviderTest extends TestCase
 {
-    private const EVENT_NAME = 'SomeEvent';
-    /** @var EventInterface|MockObject */
+    /** @var StoppableEventInterface|MockObject */
     private $event;
     /** @var ListenerInterface[]|MockObject[] */
     private $listeners;
@@ -31,11 +31,7 @@ class ListenerProviderTest extends TestCase
 
     private function givenAnEvent(): void
     {
-        $this->event = $this->createMock(EventInterface::class);
-        $this->event
-            ->expects($this->once())
-            ->method('name')
-            ->willReturn(self::EVENT_NAME);
+        $this->event = new TestEvent();
     }
 
     private function givenSomeListeners(): void
@@ -50,7 +46,7 @@ class ListenerProviderTest extends TestCase
     {
         $this->provider = new ListenerProvider();
         foreach ($this->listeners as $listener) {
-            $this->provider->addListener(self::EVENT_NAME, $listener);
+            $this->provider->addListener(TestEvent::class, $listener);
         }
     }
 
