@@ -6,6 +6,6 @@ namespace Antidot\Event;
 
 interface ListenerLocatorInterface
 {
-    public function has(string $eventName): bool;
-    public function get(string $eventName): iterable;
+    public function has(string $eventClass): bool;
+    public function get(string $eventClass): iterable;
 }

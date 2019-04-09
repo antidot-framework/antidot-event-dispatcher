@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace AntidotTest\Event;
 
-use Antidot\Event\EventInterface;
 use Antidot\Event\ListenerCollection;
 use Antidot\Event\ListenerInterface;
+use function get_class;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\EventDispatcher\StoppableEventInterface;
 
 class ListenerCollectionTest extends TestCase
 {
-    /** @var EventInterface|MockObject */
+    /** @var StoppableEventInterface|MockObject */
     private $event;
     /** @var ListenerInterface|MockObject */
     private $listeners;
@@ -30,7 +31,7 @@ class ListenerCollectionTest extends TestCase
 
     private function givenAnEvent(): void
     {
-        $this->event = $this->createMock(EventInterface::class);
+        $this->event = $this->createMock(StoppableEventInterface::class);
     }
 
     private function givenSomeListeners(): void
@@ -50,7 +51,7 @@ class ListenerCollectionTest extends TestCase
     private function whenListenerIsAddedToCollection(): void
     {
         foreach ($this->listeners as $listener) {
-            $this->collection->addListener($this->event->name(), $listener);
+            $this->collection->addListener(get_class($this->event), $listener);
         }
     }
 
@@ -58,7 +59,7 @@ class ListenerCollectionTest extends TestCase
     {
         $this->assertCount(1, $this->collection);
 
-        foreach ($this->collection->get($this->event->name()) as $listener) {
+        foreach ($this->collection->get(get_class($this->event)) as $listener) {
             $this->assertInstanceOf(ListenerInterface::class, $listener);
         }
     }

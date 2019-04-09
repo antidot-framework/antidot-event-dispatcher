@@ -18,26 +18,26 @@ class ListenerCollection implements IteratorAggregate, ListenerCollectorInterfac
         $this->listeners = [];
     }
 
-    public function addListener(string $eventName, callable $listener): void
+    public function addListener(string $eventClass, callable $listener): void
     {
-        if ($this->has($eventName)) {
-            $this->listeners[$eventName][] = $listener;
+        if ($this->has($eventClass)) {
+            $this->listeners[$eventClass][] = $listener;
             return;
         }
 
-        $this->listeners[$eventName] = [$listener];
+        $this->listeners[$eventClass] = [$listener];
     }
 
-    public function get(string $eventName): iterable
+    public function get(string $eventClass): iterable
     {
-        if ($this->has($eventName)) {
-            yield from $this->listeners[$eventName];
+        if ($this->has($eventClass)) {
+            yield from $this->listeners[$eventClass];
         }
     }
 
-    public function has(string $eventName): bool
+    public function has(string $eventClass): bool
     {
-        return array_key_exists($eventName, $this->listeners);
+        return array_key_exists($eventClass, $this->listeners);
     }
 
     public function getIterator()

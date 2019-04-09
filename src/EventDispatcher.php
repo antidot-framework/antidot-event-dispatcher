@@ -6,6 +6,7 @@ namespace Antidot\Event;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\EventDispatcher\ListenerProviderInterface;
+use Psr\EventDispatcher\StoppableEventInterface;
 
 class EventDispatcher implements EventDispatcherInterface
 {
@@ -17,7 +18,7 @@ class EventDispatcher implements EventDispatcherInterface
     }
 
     /**
-     * @param EventInterface $event
+     * @param StoppableEventInterface $event
      * @return object
      */
     public function dispatch(object $event): object
