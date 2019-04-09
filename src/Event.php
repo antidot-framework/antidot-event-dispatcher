@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Antidot\Event;
 
-abstract class Event implements EventInterface
+use Psr\EventDispatcher\StoppableEventInterface;
+
+abstract class Event implements StoppableEventInterface
 {
-    /** @var string */
-    protected $name;
     /** @var bool */
     protected $stopped;
-
-    public function name(): string
-    {
-        return $this->name;
-    }
 
     public function isPropagationStopped(): bool
     {

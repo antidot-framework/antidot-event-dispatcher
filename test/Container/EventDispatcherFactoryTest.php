@@ -9,6 +9,8 @@ use Antidot\Event\Container\EventDispatcherFactory;
 use Antidot\Event\Event;
 use Antidot\Event\EventDispatcher;
 use Antidot\Event\ListenerInterface;
+use function dump;
+use function get_class;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -40,7 +42,7 @@ class EventDispatcherFactoryTest extends TestCase
         $this->config = array_merge($config->__invoke(), [
             'app-events' => [
                 'event-listeners' => [
-                    'event.name' => [
+                    TestEvent::class => [
                         'Listener1',
                         'Listener2',
                     ]
@@ -82,10 +84,7 @@ class EventDispatcherFactoryTest extends TestCase
 
     private function andThenDispatcherShouldDispatchAnEvent(): void
     {
-        $event = new class extends Event {
-            protected $name = 'event.name';
-            protected $stopped = false;
-        };
+        $event = new TestEvent();
 
         $this->dispatcher->dispatch($event);
     }

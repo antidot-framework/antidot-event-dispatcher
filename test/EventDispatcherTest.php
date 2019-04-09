@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace AntidotTest\Event;
 
 use Antidot\Event\EventDispatcher;
-use Antidot\Event\EventInterface;
 use Antidot\Event\ListenerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;
+use Psr\EventDispatcher\StoppableEventInterface;
 
 class EventDispatcherTest extends TestCase
 {
-    /** @var EventInterface|MockObject */
+    /** @var StoppableEventInterface|MockObject */
     private $event;
     /** @var ListenerProviderInterface|MockObject */
     private $listenerProvider;
@@ -43,7 +43,7 @@ class EventDispatcherTest extends TestCase
 
     private function givenAnEvent(): void
     {
-        $this->event = $this->createMock(EventInterface::class);
+        $this->event = $this->createMock(StoppableEventInterface::class);
     }
 
     private function havingAListenerProvider(): void
