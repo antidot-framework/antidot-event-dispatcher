@@ -46,7 +46,9 @@ class ListenerProviderTest extends TestCase
     {
         $this->provider = new ListenerProvider();
         foreach ($this->listeners as $listener) {
-            $this->provider->addListener(TestEvent::class, $listener);
+            $this->provider->addListener(TestEvent::class, function () use ($listener) {
+                return $listener;
+            });
         }
     }
 
