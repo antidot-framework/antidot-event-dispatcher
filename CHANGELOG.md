@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/antidot-framework/antidot-event-dispatcher/tree/HEAD)
-
-[Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/1.1.0...HEAD)
+## [1.1.1](https://github.com/antidot-framework/antidot-event-dispatcher/tree/1.1.1) (2019-04-14)
+[Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/1.1.0...1.1.1)
 
 **Implemented enhancements:**
 
