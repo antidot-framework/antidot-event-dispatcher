@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Antidot\Event\Container;
 
 use Antidot\Event\EventDispatcher;
-use Antidot\Event\EventInterface;
 use Antidot\Event\ListenerProvider;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
