@@ -11,7 +11,7 @@ use function array_key_exists;
 class ListenerCollection implements IteratorAggregate, ListenerCollectorInterface, ListenerLocatorInterface
 {
     /** @var array<string, array<int, callable>> */
-    private $listeners;
+    private array $listeners;
 
     public function __construct()
     {

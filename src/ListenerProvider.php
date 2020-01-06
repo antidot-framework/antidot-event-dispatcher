@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Antidot\Event;
 
-use function get_class;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use Psr\EventDispatcher\StoppableEventInterface;
+use function get_class;
 
 class ListenerProvider implements ListenerProviderInterface, ListenerCollectorInterface
 {
-    /** @var ListenerCollection */
-    private $listenerCollection;
+    private ListenerCollection $listenerCollection;
 
     public function __construct()
     {

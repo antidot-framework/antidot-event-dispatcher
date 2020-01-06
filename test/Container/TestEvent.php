@@ -8,5 +8,5 @@ use Antidot\Event\Event;
 
 class TestEvent extends Event
 {
-    protected $stopped = false;
+    protected bool $stopped = false;
 }
