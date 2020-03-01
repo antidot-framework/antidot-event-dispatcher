@@ -53,6 +53,14 @@ class EventDispatcherFactoryTest extends TestCase
         $this->thenItReturnsInstanceOfEventDispatcher();
     }
 
+    public function testItShouldThrowAnExceptionWhenAnInvalidConfigGiven(): void
+    {
+        $this->expectAnException();
+        $this->givenInvalidConfiguration();
+        $this->havingAContainerWithConfig();
+        $this->whenEventDispatcherFactoryIsInvoked();
+    }
+
     private function givenAConfigProvider(): void
     {
         $config = new ConfigProvider();
@@ -66,6 +74,20 @@ class EventDispatcherFactoryTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    private function givenInvalidConfiguration(): void
+    {
+        $this->config = [
+            'other-configs' => [
+                'event-listeners' => [
+                    TestEvent::class => [
+                        'Listener1',
+                        'Listener2',
+                    ]
+                ]
+            ]
+        ];
     }
 
     private function givenAnIncompleteConfigProvider(): void
@@ -130,5 +152,10 @@ class EventDispatcherFactoryTest extends TestCase
         $event = new TestEvent();
 
         $this->dispatcher->dispatch($event);
+    }
+
+    private function expectAnException(): void
+    {
+        $this->expectException(\RuntimeException::class);
     }
 }
