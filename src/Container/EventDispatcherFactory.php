@@ -16,8 +16,8 @@ class EventDispatcherFactory
         $config = $container->get('config')['app-events'];
         $listenerProvider = new ListenerProvider();
 
-        foreach ($config['event-listeners'] as $eventClass => $listeners) {
-            foreach ($listeners as $listenerId) {
+        foreach ($config['event-listeners'] ?? [] as $eventClass => $listeners) {
+            foreach ($listeners ?? [] as $listenerId) {
                 $listenerProvider->addListener(
                     $eventClass,
                     static function () use ($container, $listenerId): callable {

@@ -31,9 +31,26 @@ class EventDispatcherFactoryTest extends TestCase
     {
         $this->givenAConfigProvider();
         $this->havingAContainerWithConfig();
+        $this->havingListenersConfiguredToReceiveAnEvent();
         $this->whenEventDispatcherFactoryIsInvoked();
         $this->thenItReturnsInstanceOfEventDispatcher();
         $this->andThenDispatcherShouldDispatchAnEvent();
+    }
+
+    public function testItShouldCreateNewInstancesOfEventDispatcherAlsoWithIncompleteConfiguration(): void
+    {
+        $this->givenAnIncompleteConfigProvider();
+        $this->havingAContainerWithConfig();
+        $this->whenEventDispatcherFactoryIsInvoked();
+        $this->thenItReturnsInstanceOfEventDispatcher();
+    }
+
+    public function testItShouldCreateNewInstancesOfEventDispatcherAlsoWithMoreIncompleteConfiguration(): void
+    {
+        $this->givenAMoreIncompleteConfigProvider();
+        $this->havingAContainerWithConfig();
+        $this->whenEventDispatcherFactoryIsInvoked();
+        $this->thenItReturnsInstanceOfEventDispatcher();
     }
 
     private function givenAConfigProvider(): void
@@ -51,6 +68,28 @@ class EventDispatcherFactoryTest extends TestCase
         ]);
     }
 
+    private function givenAnIncompleteConfigProvider(): void
+    {
+        $config = new ConfigProvider();
+        $this->config = array_merge($config->__invoke(), [
+            'app-events' => [
+                'event-listeners' => [
+                    TestEvent::class => null
+                ]
+            ]
+        ]);
+    }
+
+    private function givenAMoreIncompleteConfigProvider(): void
+    {
+        $config = new ConfigProvider();
+        $this->config = array_merge($config->__invoke(), [
+            'app-events' => [
+                'event-listeners' => null
+            ]
+        ]);
+    }
+
     private function havingAContainerWithConfig(): void
     {
         $this->container = $this->createMock(ContainerInterface::class);
@@ -59,6 +98,10 @@ class EventDispatcherFactoryTest extends TestCase
             ->method('get')
             ->with('config')
             ->willReturn($this->config);
+    }
+
+    private function havingListenersConfiguredToReceiveAnEvent(): void
+    {
         $this->container
             ->expects($this->at(1))
             ->method('get')
