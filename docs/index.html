@@ -10,18 +10,25 @@
 </head>
 <body>
   <div id="app"></div>
+  <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
   <script>
     window.$docsify = {
       coverpage: true,
       name: 'Antidot Event Dispatcher',
       repo: 'https://github.com/kpicaza/antidot-event-dispatcher.git',
+      auto2top: true,
       tabs: {
         persist    : true,      // default
         sync       : true,      // default
         theme      : 'material', // default
         tabComments: true,      // default
         tabHeadings: true       // default
-      }
+      },
+      plugins: [
+        EditOnGithubPlugin.create(
+                'https://github.com/antidot-framework/antidot-event-dispatcher/blob/master/docs/'
+        ),
+      ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
