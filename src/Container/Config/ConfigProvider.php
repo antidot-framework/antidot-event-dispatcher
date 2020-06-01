@@ -12,10 +12,8 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => [
-                'factories' => [
-                    EventDispatcherInterface::class => EventDispatcherFactory::class,
-                ]
+            'factories' => [
+                EventDispatcherInterface::class => EventDispatcherFactory::class,
             ],
             'app-events' => [
 //                'event-listeners' => [
