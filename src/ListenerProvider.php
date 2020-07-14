@@ -24,7 +24,7 @@ class ListenerProvider implements ListenerProviderInterface, ListenerCollectorIn
 
     /**
      * @param StoppableEventInterface $event
-     * @return iterable
+     * @return iterable<object>
      */
     public function getListenersForEvent(object $event): iterable
     {

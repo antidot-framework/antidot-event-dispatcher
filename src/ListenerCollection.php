@@ -8,6 +8,9 @@ use IteratorAggregate;
 
 use function array_key_exists;
 
+/**
+ * @implements \IteratorAggregate<mixed>
+ */
 class ListenerCollection implements IteratorAggregate, ListenerCollectorInterface, ListenerLocatorInterface
 {
     /** @var array<string, array<int, callable>> */
@@ -28,6 +31,9 @@ class ListenerCollection implements IteratorAggregate, ListenerCollectorInterfac
         $this->listeners[$eventClass] = [$listener];
     }
 
+    /**
+     * @return iterable<callable>
+     */
     public function get(string $eventClass): iterable
     {
         if ($this->has($eventClass)) {
@@ -40,6 +46,9 @@ class ListenerCollection implements IteratorAggregate, ListenerCollectorInterfac
         return array_key_exists($eventClass, $this->listeners);
     }
 
+    /**
+     * @return \Generator<mixed>|\Traversable<mixed>
+     */
     public function getIterator()
     {
         yield from $this->listeners;
