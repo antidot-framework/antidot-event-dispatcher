@@ -6,17 +6,14 @@ namespace AntidotTest\Event\Container;
 
 use Antidot\Event\Container\Config\ConfigProvider;
 use Antidot\Event\Container\EventDispatcherFactory;
-use Antidot\Event\Event;
 use Antidot\Event\EventDispatcher;
 use Antidot\Event\ListenerInterface;
-use function dump;
-use function get_class;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-
-use function array_merge;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
+
+use function array_merge;
 
 class EventDispatcherFactoryTest extends TestCase
 {
@@ -30,8 +27,6 @@ class EventDispatcherFactoryTest extends TestCase
     public function testItShouldCreateNewInstancesOfEventDispatcher(): void
     {
         $this->givenAConfigProvider();
-        $this->havingAContainerWithConfig();
-        $this->havingListenersConfiguredToReceiveAnEvent();
         $this->whenEventDispatcherFactoryIsInvoked();
         $this->thenItReturnsInstanceOfEventDispatcher();
         $this->andThenDispatcherShouldDispatchAnEvent();
@@ -40,7 +35,6 @@ class EventDispatcherFactoryTest extends TestCase
     public function testItShouldCreateNewInstancesOfEventDispatcherAlsoWithIncompleteConfiguration(): void
     {
         $this->givenAnIncompleteConfigProvider();
-        $this->havingAContainerWithConfig();
         $this->whenEventDispatcherFactoryIsInvoked();
         $this->thenItReturnsInstanceOfEventDispatcher();
     }
@@ -48,7 +42,6 @@ class EventDispatcherFactoryTest extends TestCase
     public function testItShouldCreateNewInstancesOfEventDispatcherAlsoWithMoreIncompleteConfiguration(): void
     {
         $this->givenAMoreIncompleteConfigProvider();
-        $this->havingAContainerWithConfig();
         $this->whenEventDispatcherFactoryIsInvoked();
         $this->thenItReturnsInstanceOfEventDispatcher();
     }
@@ -57,7 +50,6 @@ class EventDispatcherFactoryTest extends TestCase
     {
         $this->expectAnException();
         $this->givenInvalidConfiguration();
-        $this->havingAContainerWithConfig();
         $this->whenEventDispatcherFactoryIsInvoked();
     }
 
@@ -74,6 +66,16 @@ class EventDispatcherFactoryTest extends TestCase
                 ]
             ]
         ]);
+        $this->container = $this->createMock(ContainerInterface::class);
+        $this->container
+            ->expects($this->exactly(3))
+            ->method('get')
+            ->withConsecutive(['config'], ['Listener1'], ['Listener2'])
+            ->willReturnOnConsecutiveCalls(
+                $this->config,
+                $this->createMock(ListenerInterface::class),
+                $this->createMock(ListenerInterface::class)
+            );
     }
 
     private function givenInvalidConfiguration(): void
@@ -88,6 +90,7 @@ class EventDispatcherFactoryTest extends TestCase
                 ]
             ]
         ];
+        $this->prepareContainer();
     }
 
     private function givenAnIncompleteConfigProvider(): void
@@ -100,6 +103,7 @@ class EventDispatcherFactoryTest extends TestCase
                 ]
             ]
         ]);
+        $this->prepareContainer();
     }
 
     private function givenAMoreIncompleteConfigProvider(): void
@@ -110,30 +114,7 @@ class EventDispatcherFactoryTest extends TestCase
                 'event-listeners' => null
             ]
         ]);
-    }
-
-    private function havingAContainerWithConfig(): void
-    {
-        $this->container = $this->createMock(ContainerInterface::class);
-        $this->container
-            ->expects($this->at(0))
-            ->method('get')
-            ->with('config')
-            ->willReturn($this->config);
-    }
-
-    private function havingListenersConfiguredToReceiveAnEvent(): void
-    {
-        $this->container
-            ->expects($this->at(1))
-            ->method('get')
-            ->with('Listener1')
-            ->willReturn($this->createMock(ListenerInterface::class));
-        $this->container
-            ->expects($this->at(2))
-            ->method('get')
-            ->with('Listener2')
-            ->willReturn($this->createMock(ListenerInterface::class));
+        $this->prepareContainer();
     }
 
     private function whenEventDispatcherFactoryIsInvoked(): void
@@ -157,5 +138,15 @@ class EventDispatcherFactoryTest extends TestCase
     private function expectAnException(): void
     {
         $this->expectException(\RuntimeException::class);
+    }
+
+    private function prepareContainer(): void
+    {
+        $this->container = $this->createMock(ContainerInterface::class);
+        $this->container
+            ->expects($this->once())
+            ->method('get')
+            ->with('config')
+            ->willReturn($this->config);
     }
 }
