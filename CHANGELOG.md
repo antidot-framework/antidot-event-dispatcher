@@ -1,6 +1,19 @@
 # Changelog
 
-## [2.0.2](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.2)
+## [2.0.3](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.3) (2021-01-10)
+
+[Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.2...2.0.3)
+
+**Implemented enhancements:**
+
+- add php8 support [\#21](https://github.com/antidot-framework/antidot-event-dispatcher/pull/21) ([kpicaza](https://github.com/kpicaza))
+
+**Merged pull requests:**
+
+- Update phpro/grumphp requirement from ~0.17 to ~0.17 || ~1.0 [\#20](https://github.com/antidot-framework/antidot-event-dispatcher/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update phpro/grumphp requirement from ^0.17.1 || ^0.19.0 || ^0.21.0 to ~0.17 [\#19](https://github.com/antidot-framework/antidot-event-dispatcher/pull/19) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [2.0.2](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.2) (2020-08-29)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.1...2.0.2)
 
@@ -14,6 +27,10 @@
 ## [2.0.1](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.1) (2020-07-14)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.0...2.0.1)
+
+**Fixed bugs:**
+
+- Issue/\#1 [\#2](https://github.com/antidot-framework/antidot-event-dispatcher/pull/2) ([kpicaza](https://github.com/kpicaza))
 
 **Merged pull requests:**
 
@@ -62,10 +79,6 @@
 ## [1.0.0](https://github.com/antidot-framework/antidot-event-dispatcher/tree/1.0.0) (2019-04-08)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/e86164a2734915e98227bdb23db717cb9206ef17...1.0.0)
-
-**Fixed bugs:**
-
-- Issue/\#1 [\#2](https://github.com/antidot-framework/antidot-event-dispatcher/pull/2) ([kpicaza](https://github.com/kpicaza))
 
 
 
