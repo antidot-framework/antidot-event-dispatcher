@@ -1,6 +1,6 @@
 {
     "name": "antidot-fw/event-dispatcher",
-    "description": "Antidot Framework event dispatcher library",
+    "description": "Antidot Framework PSR-14 event dispatcher library",
     "keywords": [
         "psr-11",
         "psr-14"
@@ -13,15 +13,17 @@
         }
     ],
     "require": {
-        "php": "^7.4.0|^8.0",
+        "php": "^7.4.0",
         "psr/event-dispatcher": "^1.0"
     },
     "require-dev": {
-        "phpro/grumphp": "~0.17 || ~1.0",
-        "phpstan/phpstan": "^0.11.5 || ^0.12.0",
+        "infection/infection": "^0.21.0",
+        "phpro/grumphp": "^1.0",
+        "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^8.0 || ^9.0",
         "squizlabs/php_codesniffer": "^3.4",
-        "symfony/var-dumper": "^4.2 || ^5.0"
+        "symfony/var-dumper": "^4.2 || ^5.0",
+        "vimeo/psalm": "^4.4"
     },
     "autoload": {
         "psr-4": {
@@ -37,12 +39,16 @@
         "check-all": [
             "@cs-check",
             "@test",
-            "@inspect"
+            "@inspect",
+            "@psalm",
+            "@infection"
         ],
         "cs-check": "phpcs src --colors",
         "cs-fix": "phpcbf src --colors",
         "inspect": "phpstan analyse src -l7 --ansi",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "psalm": "psalm",
+        "infection": "XDEBUG_MODE=coverage infection"
     },
     "config": {
         "sort-packages": true

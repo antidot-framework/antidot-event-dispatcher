@@ -16,14 +16,24 @@ class EventDispatcherFactory
     public function __invoke(ContainerInterface $container): EventDispatcherInterface
     {
         try {
-            $config = $container->get('config')['app-events'];
+            /** @var array<string, mixed> $globalConfig */
+            $globalConfig = $container->get('config');
+            /** @var array<string, array> $config */
+            $config = $globalConfig['app-events'];
             $listenerProvider = new ListenerProvider();
+            /**
+             * @var string $eventClass
+             * @var ?array<string> $listeners
+             */
             foreach ($config['event-listeners'] ?? [] as $eventClass => $listeners) {
                 foreach ($listeners ?? [] as $listenerId) {
                     $listenerProvider->addListener(
                         $eventClass,
                         static function () use ($container, $listenerId): callable {
-                            return $container->get($listenerId);
+                            /** @var callable $listener */
+                            $listener = $container->get($listenerId);
+
+                            return $listener;
                         }
                     );
                 }

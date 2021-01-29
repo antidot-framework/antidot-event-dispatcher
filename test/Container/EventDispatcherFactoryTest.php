@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
+use RuntimeException;
 use function array_merge;
 
 class EventDispatcherFactoryTest extends TestCase
@@ -23,6 +24,27 @@ class EventDispatcherFactoryTest extends TestCase
     private $container;
     /** @var EventDispatcherInterface */
     private $dispatcher;
+
+    protected function setUp(): void
+    {
+        $this->container = $this->createMock(ContainerInterface::class);
+    }
+
+    public function testItShouldThrowExceptionGievenEmptyConfig(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage(sprintf(
+            'Something went wrong constructing an instance of %s, review config related to \'app-events\''
+            . ' and see the previous exception for more info.',
+            EventDispatcher::class
+        ));
+        $this->expectExceptionCode(0);
+        $this->container->expects($this->once())
+            ->method('get')
+            ->with('config')
+            ->willReturn([]);
+        $this->whenEventDispatcherFactoryIsInvoked();
+    }
 
     public function testItShouldCreateNewInstancesOfEventDispatcher(): void
     {
@@ -137,7 +159,7 @@ class EventDispatcherFactoryTest extends TestCase
 
     private function expectAnException(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
     }
 
     private function prepareContainer(): void
