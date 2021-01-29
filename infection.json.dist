@@ -9,7 +9,7 @@
     },
     "logs": {
         "badge": {
-            "branch": "1.x.x"
+            "branch": "3.x.x"
         },
         "text": "infection.log"
     }
