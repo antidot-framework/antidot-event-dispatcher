@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.4](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.4)
+
+[Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.3...2.0.4)
+
+**Implemented enhancements:**
+
+- add mutation and type coverage badges [\#23](https://github.com/antidot-framework/antidot-event-dispatcher/pull/23) ([kpicaza](https://github.com/kpicaza))
+- add psaml and infection workflows [\#22](https://github.com/antidot-framework/antidot-event-dispatcher/pull/22) ([kpicaza](https://github.com/kpicaza))
+
 ## [2.0.3](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.3) (2021-01-10)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.2...2.0.3)
@@ -27,10 +36,6 @@
 ## [2.0.1](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.1) (2020-07-14)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.0...2.0.1)
-
-**Fixed bugs:**
-
-- Issue/\#1 [\#2](https://github.com/antidot-framework/antidot-event-dispatcher/pull/2) ([kpicaza](https://github.com/kpicaza))
 
 **Merged pull requests:**
 
@@ -79,6 +84,10 @@
 ## [1.0.0](https://github.com/antidot-framework/antidot-event-dispatcher/tree/1.0.0) (2019-04-08)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/e86164a2734915e98227bdb23db717cb9206ef17...1.0.0)
+
+**Fixed bugs:**
+
+- Issue/\#1 [\#2](https://github.com/antidot-framework/antidot-event-dispatcher/pull/2) ([kpicaza](https://github.com/kpicaza))
 
 
 
