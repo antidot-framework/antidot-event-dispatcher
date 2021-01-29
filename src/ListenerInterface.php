@@ -8,5 +8,9 @@ use Psr\EventDispatcher\StoppableEventInterface;
 
 interface ListenerInterface
 {
-    public function __invoke(StoppableEventInterface $event): StoppableEventInterface;
+    /**
+     * @param object|StoppableEventInterface $event
+     * @return object|StoppableEventInterface
+     */
+    public function __invoke(object $event): object;
 }

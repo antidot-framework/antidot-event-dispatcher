@@ -31,6 +31,14 @@ class EventDispatcherTest extends TestCase
         $this->whenEventIsDispatched();
     }
 
+    public function testItShouldDispatchEventOfAnyTypeOfObject(): void
+    {
+        $this->givenANotStoppableEvent();
+        $this->havingAListenerProvider();
+        $this->havingListenersForEventInListenerProvider();
+        $this->whenEventIsDispatched();
+    }
+
     public function testItShouldNotHandleAnyEventWhenPropagationIsStopped(): void
     {
         $this->givenAnEvent();
@@ -44,6 +52,11 @@ class EventDispatcherTest extends TestCase
     private function givenAnEvent(): void
     {
         $this->event = $this->createMock(StoppableEventInterface::class);
+    }
+
+    private function givenANotStoppableEvent(): void
+    {
+        $this->event = $this->createMock(\StdClass::class);
     }
 
     private function havingAListenerProvider(): void
