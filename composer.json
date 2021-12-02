@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "psr/event-dispatcher": "^1.0"
+        "psr/event-dispatcher": "^1.0",
+        "react/event-loop": "^1.2"
     },
     "require-dev": {
         "infection/infection": "^0.21.0",
