@@ -3,7 +3,6 @@
 namespace Antidot\Test\Event;
 
 use Antidot\Event\AsyncEventDispatcher;
-use Antidot\Event\EventDispatcher;
 use Antidot\Event\ListenerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\ListenerProviderInterface;

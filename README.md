@@ -56,11 +56,31 @@ $eventDispatcher = $factory->__invoke($container);
 $container->set(EventDispatcherInterface::class, $eventDispatcher);
 ````
 
+#### Async Event Dispatcher Factory
+
+
+
+```bash
+composer require react/event-loop
+```
+
+````php
+<?php
+
+use Antidot\Event\Container\AsyncEventDispatcherFactory;
+use Psr\EventDispatcher\EventDispatcherInterface;
+
+$factory = new AsyncEventDispatcherFactory();
+
+$eventDispatcher = $factory->__invoke($container);
+$container->set(EventDispatcherInterface::class, $eventDispatcher);
+````
+
 ## Usage
 
 ### Send events
 
-````php
+```php
 <?php
 
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -69,5 +89,20 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 $eventDispatcher = $container->get(EventDispatcherInterface::class);
 
 $eventDispatcher->dispatch(SomeEvent::occur());
+```
 
-````
+### Send events Async mode
+
+```php
+<?php
+
+use Psr\EventDispatcher\EventDispatcherInterface;
+use React\EventLoop\Loop;
+
+/** @var \Psr\Container\ContainerInterface $container */
+$eventDispatcher = $container->get(EventDispatcherInterface::class);
+
+$eventDispatcher->dispatch(SomeEvent::occur());
+
+Loop::run()
+```
