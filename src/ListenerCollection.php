@@ -6,6 +6,7 @@ namespace Antidot\Event;
 
 use IteratorAggregate;
 
+use Traversable;
 use function array_key_exists;
 
 /**
@@ -47,9 +48,9 @@ class ListenerCollection implements IteratorAggregate, ListenerCollectorInterfac
     }
 
     /**
-     * @return \Generator<mixed>|\Traversable<mixed>
+     * @return \Generator<mixed>|Traversable<mixed>
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         yield from $this->listeners;
     }
