@@ -9,7 +9,7 @@ use AntidotTest\Event\Container\TestEvent;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
-class ListenerProviderFactoryTest extends TestCase
+final class ListenerProviderFactoryTest extends TestCase
 {
     public function testItShouldVConfigureListenerProviderFactory(): void
     {
