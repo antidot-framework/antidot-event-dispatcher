@@ -1,12 +1,24 @@
 # Changelog
 
-## [2.0.4](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.4)
+## [2.1.0](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.1.0) (2021-12-06)
+
+[Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.4...2.1.0)
+
+**Implemented enhancements:**
+
+- Add Async Event dispatcher [\#27](https://github.com/antidot-framework/antidot-event-dispatcher/pull/27) ([kpicaza](https://github.com/kpicaza))
+- Let infection.log file to ignore Git control [\#26](https://github.com/antidot-framework/antidot-event-dispatcher/pull/26) ([peter279k](https://github.com/peter279k))
+
+**Merged pull requests:**
+
+- Add PHPStan Action during GitHub workflow [\#25](https://github.com/antidot-framework/antidot-event-dispatcher/pull/25) ([peter279k](https://github.com/peter279k))
+
+## [2.0.4](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.4) (2021-02-06)
 
 [Full Changelog](https://github.com/antidot-framework/antidot-event-dispatcher/compare/2.0.3...2.0.4)
 
 **Implemented enhancements:**
 
-- add mutation and type coverage badges [\#23](https://github.com/antidot-framework/antidot-event-dispatcher/pull/23) ([kpicaza](https://github.com/kpicaza))
 - add psaml and infection workflows [\#22](https://github.com/antidot-framework/antidot-event-dispatcher/pull/22) ([kpicaza](https://github.com/kpicaza))
 
 ## [2.0.3](https://github.com/antidot-framework/antidot-event-dispatcher/tree/2.0.3) (2021-01-10)
