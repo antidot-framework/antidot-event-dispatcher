@@ -13,9 +13,9 @@
 
 Using [composer](https://getcomposer.org/download/)
 
-````
+```bash
 composer require antidot-fw/event-dispatcher
-````
+```
 
 ### Using [Laminas config Aggregator](https://docs.laminas.dev/laminas-config-aggregator/)
 
@@ -27,7 +27,7 @@ it install the library automatically
 
 #### Config
 
-````php
+```php
 <?php
 /** @var \Psr\Container\ContainerInterface $container */
 $container->set('config', [
@@ -41,10 +41,10 @@ $container->set('config', [
         ]
     ]
 ]);
-````
+```
 #### factory
 
-````php
+```php
 <?php
 
 use Antidot\Event\Container\EventDispatcherFactory;
@@ -54,17 +54,15 @@ $factory = new EventDispatcherFactory();
 
 $eventDispatcher = $factory->__invoke($container);
 $container->set(EventDispatcherInterface::class, $eventDispatcher);
-````
+```
 
 #### Async Event Dispatcher Factory
-
-
 
 ```bash
 composer require react/event-loop
 ```
 
-````php
+```php
 <?php
 
 use Antidot\Event\Container\AsyncEventDispatcherFactory;
@@ -74,7 +72,7 @@ $factory = new AsyncEventDispatcherFactory();
 
 $eventDispatcher = $factory->__invoke($container);
 $container->set(EventDispatcherInterface::class, $eventDispatcher);
-````
+```
 
 ## Usage
 
