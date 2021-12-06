@@ -10,7 +10,7 @@ use Psr\EventDispatcher\StoppableEventInterface;
 use React\EventLoop\Loop;
 use StdClass;
 
-class AsyncEventDispatcherTest extends TestCase
+final class AsyncEventDispatcherTest extends TestCase
 {
     public function testItShouldDispatchEvents(): void
     {

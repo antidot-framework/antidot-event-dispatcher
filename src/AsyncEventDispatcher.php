@@ -7,10 +7,9 @@ namespace Antidot\Event;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\EventDispatcher\ListenerProviderInterface;
 use Psr\EventDispatcher\StoppableEventInterface;
-use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 
-class AsyncEventDispatcher implements EventDispatcherInterface
+final class AsyncEventDispatcher implements EventDispatcherInterface
 {
     private ListenerProviderInterface $listenerProvider;
     private LoopInterface $loop;
